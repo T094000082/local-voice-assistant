@@ -8,15 +8,16 @@ class Config:
     SAMPLE_RATE = 16000  # Sample rate for audio recording
     CHANNELS = 1         # Mono recording
     CHUNK_SIZE = 1024    # Audio chunk size
-    RECORD_DURATION = 5  # Maximum recording duration in seconds
+    RECORD_DURATION = 10  # Maximum recording duration in seconds
     
     # Whisper Model Settings
     WHISPER_MODEL = "base"  # Options: tiny, base, small, medium, large
     WHISPER_DEVICE = "cpu"  # Use "cuda" if you have GPU support
+    WHISPER_LANGUAGE = "zh"  # Language code: zh (Chinese), en (English), None (auto-detect)
     
     # Ollama Settings
     OLLAMA_BASE_URL = "http://localhost:11434"
-    OLLAMA_MODEL = "llama3.2:latest"  # Change this to your installed model
+    OLLAMA_MODEL = "gemma3:1b-it-qat"  # Gemma3 1B quantized model for faster inference
     OLLAMA_TIMEOUT = 30  # Request timeout in seconds
     
     # TTS Settings
@@ -31,3 +32,9 @@ class Config:
     # UI Settings
     ACTIVATION_KEY = "space"  # Key to start recording
     QUIT_KEY = "q"           # Key to quit application
+    
+    # Command Line Assistant Settings
+    ENABLE_SYSTEM_COMMANDS = True  # Enable system command processing
+    COMMAND_TIMEOUT = 10     # Command execution timeout in seconds
+    DEFAULT_LANGUAGE = "zh-TW"  # Default response language (Traditional Chinese)
+    VOICE_FEEDBACK = True    # Enable voice feedback for system queries

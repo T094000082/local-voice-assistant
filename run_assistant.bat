@@ -5,7 +5,7 @@ echo ==============================
 echo.
 echo 📋 Pre-flight checklist:
 echo 1. Ollama installed and running?
-echo 2. Model pulled (e.g., llama3.2:7b)?
+echo 2. Model pulled (e.g., gemma3:1b-it-qat)?
 echo 3. Microphone connected?
 echo 4. Python dependencies installed?
 

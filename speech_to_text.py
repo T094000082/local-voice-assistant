@@ -58,12 +58,15 @@ class SpeechToText:
         try:
             print("🎯 Transcribing audio...")
             
-            # Transcribe the audio
+            # Transcribe the audio with configured language preference
             segments, info = self.model.transcribe(
                 audio_file,
-                language="en",  # Set to None for auto-detection
+                language=Config.WHISPER_LANGUAGE,  # 使用配置中的語言設定
                 vad_filter=True,  # Voice Activity Detection
-                vad_parameters=dict(min_silence_duration_ms=500)
+                vad_parameters=dict(min_silence_duration_ms=500),
+                # 針對中文優化的參數
+                beam_size=5,  # 增加搜索寬度以提高準確性
+                best_of=5     # 選擇最佳候選結果
             )
             
             # Combine all segments into one text

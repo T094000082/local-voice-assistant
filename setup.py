@@ -66,7 +66,7 @@ def install_ollama():
     print("\n📋 To install Ollama:")
     print("1. Go to: https://ollama.ai/")
     print("2. Download and install Ollama for Windows")
-    print("3. After installation, run: ollama pull llama3.2:7b")
+    print("3. After installation, run: ollama pull gemma3:1b-it-qat")
     print("4. Start Ollama service: ollama serve")
     
     return False
@@ -224,7 +224,7 @@ def main():
         print("🎉 Setup completed successfully!")
         print("\n📋 Next steps:")
         print("1. Make sure Ollama is running: ollama serve")
-        print("2. Pull the model: ollama pull llama3.2:7b")
+        print("2. Pull the model: ollama pull gemma3:1b-it-qat")
         print("3. Run the assistant: python voice_assistant.py")
     else:
         print("⚠️  Setup completed with some issues")

@@ -15,6 +15,16 @@ class Config:
     WHISPER_DEVICE = "cpu"  # Use "cuda" if you have GPU support
     WHISPER_LANGUAGE = "zh"  # Language code: zh (Chinese), en (English), None (auto-detect)
     
+    # AIShell Chinese ASR Settings
+    ENABLE_AISHELL = True   # Enable AIShell Chinese ASR engine
+    AISHELL_MODEL = "auto"  # Options: "wav2vec2-chinese", "whisper-large-v3", "auto"
+    AISHELL_DEVICE = "auto" # Options: "cpu", "cuda", "auto"
+    
+    # ASR Engine Selection
+    PRIMARY_ASR_ENGINE = "auto"     # Options: "whisper", "aishell", "auto"
+    FALLBACK_ASR_ENGINE = "whisper" # Fallback engine when primary fails
+    ASR_LANGUAGE_PREFERENCE = "zh"  # Language preference for auto selection
+    
     # Ollama Settings
     OLLAMA_BASE_URL = "http://localhost:11434"
     OLLAMA_MODEL = "gemma3:1b-it-qat"  # Gemma3 1B quantized model for faster inference

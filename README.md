@@ -20,6 +20,23 @@
 
 ## 📈 更新紀錄
 
+### 🚧 v1.2 (開發中 - AIShell 整合分支)
+**正在開發：**
+- 🎯 **AIShell 中文語音識別整合**
+  - 建立 AIShell ASR 引擎基礎架構
+  - ASR 引擎智能選擇系統 (Whisper ↔ AIShell)
+  - 針對繁體中文語音識別效果優化
+- 🔧 **雙引擎架構**
+  - 自動選擇最適合的語音識別引擎
+  - 智能備援機制，提高識別成功率
+  - 效能監控和統計功能
+- 🎯 **解決目標**
+  - 改善中文誤識別問題：「目前路徑下有多少檔案？」→「There are a lot of things...」
+  - 提供更準確的繁體中文語音體驗
+  - 保持向下相容性
+
+> 📋 **開發進度**: 基礎框架完成 ✅ | 模型整合進行中 🚧 | 效能測試待完成 ⏳
+
 ### v1.1 (2025-07-20)
 **新增功能：**
 - ✨ 新增「最後修改檔案查詢」功能
@@ -232,23 +249,29 @@ py ai_test.py
 
 ```
 local-voice-assistant/
-├── voice_assistant.py      # 主程式
-├── config.py              # 配置設定
-├── audio_recorder.py      # 音訊錄製模組
-├── speech_to_text.py      # 語音識別模組
-├── ollama_client.py       # AI 對話模組（含系統查詢整合）
-├── command_helper.py      # 命令列功能模組
-├── text_to_speech.py      # 語音合成模組
-├── audio_player.py        # 音訊播放模組
-├── setup.py              # 安裝檢查工具
-├── test_components.py     # 元件測試工具
-├── interactive_test.py    # 交互式測試工具
-├── demo.py               # 功能展示腳本
-├── ai_test.py            # AI 功能測試
-├── requirements.txt       # Python 相依套件
-├── quick_start.bat       # Windows 快速啟動
-├── COMMAND_ASSISTANT_SETUP.md  # 命令列助手設定說明
-└── README.md             # 說明文件
+├── voice_assistant.py           # 主程式
+├── config.py                   # 配置設定（含 AIShell 選項）
+├── audio_recorder.py           # 音訊錄製模組
+├── speech_to_text.py           # Whisper 語音識別模組
+├── speech_to_text_aishell.py   # 🆕 AIShell 中文語音識別模組
+├── asr_selector.py             # 🆕 ASR 引擎選擇器
+├── ollama_client.py            # AI 對話模組（含系統查詢整合）
+├── command_helper.py           # 命令列功能模組
+├── text_to_speech.py           # 語音合成模組
+├── audio_player.py             # 音訊播放模組
+├── setup.py                    # 安裝檢查工具
+├── research/                   # 🆕 研究文檔目錄
+│   └── AIShell_Integration_Plan.md  # AIShell 整合計劃
+├── models/                     # 模型檔案目錄
+│   ├── aishell/               # 🆕 AIShell 模型目錄
+│   └── whisper/               # Whisper 模型快取
+├── test_components.py          # 元件測試工具
+├── interactive_test.py         # 交互式測試工具
+├── demo.py                    # 功能展示腳本
+├── ai_test.py                 # AI 功能測試
+├── requirements.txt            # Python 相依套件
+├── quick_start.bat            # Windows 快速啟動
+└── README.md                  # 說明文件
 ```
 
 ## ⚙️ 自訂設定
@@ -264,6 +287,13 @@ OLLAMA_MODEL = "gemma3:1b-it-qat" # AI 模型
 # 語音設定
 WHISPER_MODEL = "base"       # Whisper 模型大小
 TTS_SPEED = 1.0             # 語音速度
+
+# 🆕 AIShell 中文語音識別設定
+ENABLE_AISHELL = True        # 啟用 AIShell 引擎
+AISHELL_MODEL = "auto"       # AIShell 模型選擇
+PRIMARY_ASR_ENGINE = "auto"  # 主要 ASR 引擎 ("whisper", "aishell", "auto")
+FALLBACK_ASR_ENGINE = "whisper" # 備用引擎
+ASR_LANGUAGE_PREFERENCE = "zh"  # 語言偏好
 
 # 命令列助手設定
 ENABLE_SYSTEM_COMMANDS = True   # 啟用系統命令處理
